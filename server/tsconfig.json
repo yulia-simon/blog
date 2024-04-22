@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@user/*": [
+        "src/user/*"
+      ],
+      "@app/*": [
+        "src/app/*"
+      ],
+      "@guards/*": [
+        "src/auth/guards/*"
+      ],
+      "@auth-dto/*": [
+        "src/auth/dto/*"
+      ],
+      "@paginate/*": [
+        "src/utils/paginate/*"
+      ],
+      "@controllers/*": [
+        "src/controllers/*"
+      ],
+      "@app/interfaces/*": [
+        "src/auth/interfaces/*"
+      ],
+      "@roles/*": [
+        "src/roles/*"
+      ],
+      "@shared/*": [
+        "libs/shared/src/*"
+      ],
+      "@shared-decorators/*": [
+        "libs/shared/src/decorators/*"
+      ]
+    }
+  }
+}
