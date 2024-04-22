@@ -27,3 +27,7 @@ order to use the application.
 To run the frontend, navigate to the `client` directory 
 
 To run the backend, navigate to the `server` directory 
+
+### Requirements for Creating a Post
+
+To create a post, the user must have either created the blog or the role of `admin`. If the user does not have these permissions, they will be denied access to create a post.
