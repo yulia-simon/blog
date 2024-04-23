@@ -31,3 +31,9 @@ To run the backend, navigate to the `server` directory
 ### Requirements for Creating a Post
 
 To create a post, the user must have either created the blog or the role of `admin`. If the user does not have these permissions, they will be denied access to create a post.
+
+## Computational Question Solution
+
+The solution for the computational question, which involves creating a stored procedure that creates an amortization schedule, can be found in the `server` directory.
+
+This solution is implemented as part of the Swagger API. You can access the Swagger UI by navigating to `http://localhost:8081/api` in your browser.
