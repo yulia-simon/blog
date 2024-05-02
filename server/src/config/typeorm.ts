@@ -14,7 +14,8 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
     migrationsTableName: 'migrations',
     synchronize: false,
     migrationsRun: true,
-    autoLoadEntities: true
+    autoLoadEntities: true,
+    logging: true,
 };
 
 
