@@ -2,7 +2,6 @@ import { Injectable, BadRequestException, Body, Logger, UnauthorizedException, H
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
-import { InjectConfig } from 'nestjs-config';
 import { compareSync } from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 import { addMonths } from 'date-fns';
@@ -15,6 +14,7 @@ import { JwtPayload } from './interfaces';
 import { LoginDto } from './dto';
 import { RegisterDto } from './dto/register.dto';
 import { Token } from './tokens';
+import { ConfigService } from '@nestjs/config';
 
 const REFRESH_TOKEN = 'refreshtoken';
 
@@ -26,9 +26,8 @@ export class AuthService {
         private readonly jwtService: JwtService,
         @InjectRepository(TokenEntity)
         private readonly tokenRepository: Repository<TokenEntity>,
-        @InjectConfig() private readonly config,
+        private config: ConfigService
     ) {
-        this.config = config;
     }
 
     async validateUser(payload: JwtPayload): Promise<UserEntity | null> {
@@ -202,7 +201,7 @@ export class AuthService {
             httpOnly: true,
             sameSite: 'lax',
             expires: new Date(tokens.refreshToken.exp),
-            secure: this.config.get('environment').NODE_ENV === 'PROD',
+            secure: this.config.get('MODE') === 'PROD',
             path: '/',
         });
 

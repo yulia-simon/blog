@@ -1,7 +1,6 @@
 import { Entity, Column, ManyToOne, OneToMany } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { UserEntity, CommentEntity, PostEntity } from '.';
-import { Sections } from '../constants/sections';
 
 @Entity({ name: 'blogs' })
 export class BlogEntity extends BaseEntity {
@@ -17,7 +16,7 @@ export class BlogEntity extends BaseEntity {
   content: string;
 
   @Column({ nullable: true })
-  topic: Sections;
+  topic: string;
 
 
   @ManyToOne(() => UserEntity, (user) => user.blogs)

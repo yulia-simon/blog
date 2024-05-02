@@ -2,7 +2,6 @@ import { Controller, Post, Body, HttpCode, HttpStatus, Get, Res, Logger } from '
 import { ApiBadRequestResponse, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { Response } from 'express';
-import { InjectConfig } from 'nestjs-config';
 
 import { Cookie, Public, UserAgent } from '../../libs/shared/src/decorators';
 import { AuthService } from './auth.service';
@@ -17,9 +16,7 @@ export class AuthController {
     private readonly logger = new Logger(AuthService.name);
     constructor(
         private readonly authService: AuthService,
-        @InjectConfig() private readonly config,
     ) {
-        this.config = config;
     }
 
     @HttpCode(HttpStatus.CREATED)

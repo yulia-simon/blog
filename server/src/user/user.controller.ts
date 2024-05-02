@@ -123,7 +123,7 @@ export class UserController {
     @Roles(Role.Admin)
     @UseGuards(JwtAuthGuard, RolesGuard)
     @ApiOperation({
-        summary: 'Update a user by ID:firstName,lastName,isActive,role',
+        summary: 'Update a user by ID:firstName,lastName,role',
     })
     @ApiResponse({ status: 200, description: 'User updated successfully' })
     @ApiNotFoundResponse({ description: 'User not found' })

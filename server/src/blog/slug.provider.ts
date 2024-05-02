@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { InjectConfig } from 'nestjs-config';
+import { ConfigService } from '@nestjs/config';
 import slugify from 'slugify';
 
 @Injectable()
 export class SlugProvider {
-  constructor(@InjectConfig() private readonly config) { }
+  constructor(private readonly config: ConfigService) { }
 
 
   slugify(slug: string): string {

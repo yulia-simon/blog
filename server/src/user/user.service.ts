@@ -1,6 +1,5 @@
 import { Injectable, Logger, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { InjectConfig, ConfigService } from 'nestjs-config';
 import * as bcrypt from 'bcrypt';
 import { Repository } from 'typeorm';
 
@@ -9,6 +8,7 @@ import { Pagination, PaginationOptionsInterface } from '../utils/paginate';
 import { UpdateUserDto } from './dto';
 import { RegisterDto } from '../auth/dto/index';
 import { AuthService } from '../auth/auth.service';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class UserService {
@@ -18,9 +18,9 @@ export class UserService {
     @InjectRepository(User) private readonly userRepository: Repository<User>,
     @InjectRepository(TokenEntity)
     private readonly tokenRepository: Repository<TokenEntity>,
-    @InjectConfig() private readonly config: ConfigService,
+    private config: ConfigService
   ) {
-    this.saltRounds = config.get('app.salt_rounds', 10);
+    this.saltRounds = config.get('SALT_ROUNDS', 10);
   }
 
   async getPaginatedUsers(paginationOptions: PaginationOptionsInterface): Promise<Pagination<User>> {

@@ -5,7 +5,7 @@ import { setupSwagger } from './swagger/swagger';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
 
-const PORT = 8081;
+const PORT = 8082;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {

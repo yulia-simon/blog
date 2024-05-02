@@ -2,16 +2,23 @@ import { BlogEntity, PostEntity, TokenEntity, UserEntity } from '../entities';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule, ConfigService } from 'nestjs-config';
 import { PostController } from './post.controller';
 import { PostService } from './post.service';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
     imports: [
         ConfigModule,
         TypeOrmModule.forFeature([PostEntity, BlogEntity, TokenEntity, UserEntity]),
         JwtModule.registerAsync({
-            useFactory: (config: ConfigService) => config.get('jwt'),
+            useFactory: (config: ConfigService) => {
+                return {
+                    secret: config.get<string>('JWT_SECRET'),
+                    signOptions: {
+                        expiresIn: config.get<string | number>('JWT_EXPIRES'),
+                    },
+                };
+            },
             inject: [ConfigService],
         }),
     ],

@@ -28,8 +28,6 @@ export class CreateUserDto {
     @ApiProperty()
     lastName: string;
 
-    @ApiProperty()
-    isActive: boolean;
 
     @ApiProperty()
     role: string;

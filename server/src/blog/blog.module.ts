@@ -2,11 +2,11 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BlogEntity, UserEntity } from './../entities';
 import { BlogService } from './blog.service';
-import { ConfigModule, ConfigService } from 'nestjs-config';
 import { BlogController } from './blog.controller';
 import { SlugProvider } from './slug.provider';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -15,7 +15,14 @@ import { PassportModule } from '@nestjs/passport';
 
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({
-      useFactory: (config: ConfigService) => config.get('jwt'),
+      useFactory: (config: ConfigService) => {
+        return {
+          secret: config.get<string>('JWT_SECRET'),
+          signOptions: {
+            expiresIn: config.get<string | number>('JWT_EXPIRES'),
+          },
+        };
+      },
       inject: [ConfigService],
     }),
   ],

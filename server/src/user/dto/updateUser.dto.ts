@@ -12,8 +12,6 @@ export class UpdateUserDto {
     @IsNotEmpty()
     lastName: string;
 
-    @ApiProperty()
-    isActive: boolean;
 
     @ApiProperty()
     @IsNotEmpty()

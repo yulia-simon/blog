@@ -4,16 +4,13 @@ import { UserService } from './../user';
 import { UserEntity } from './../entities';
 import { TokenEntity } from './../entities/token.entity';
 import { LoginDto } from './dto';
-import { RegisterDto } from './dto/register.dto';
 import { JwtService } from '@nestjs/jwt';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { ConfigService } from 'nestjs-config';
 
 import { faker } from '@faker-js/faker';
 import { Token } from './tokens';
-import { ConfigType } from '@nestjs/config';
-import { BadRequestException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 describe('AuthService', () => {
     let service: AuthService;
@@ -41,7 +38,7 @@ describe('AuthService', () => {
     const mockToken = {
         accessToken: 'accessToken',
         refreshToken: 'refreshToken',
-    } as Token;
+    } as unknown as Token;
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
