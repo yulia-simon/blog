@@ -27,14 +27,15 @@ export class BlogService {
             const [blogs, total] = await this.blogRepository.findAndCount({
                 take: limit,
                 skip: page,
-                relations: ['author'],
+                relations: ['author', 'images'],
             });
             const blogsWithoutAuthor = blogs.map((blog) => {
-                const { author, ...blogWithoutAuthor } = blog;
+                const { author, images, ...blogWithoutAuthor } = blog;
                 return {
                     ...blogWithoutAuthor,
                     firstName: author?.firstName,
                     lastName: author?.lastName,
+                    imageUrl: images[0]?.url,
                 };
             });
             return new Pagination<any>({

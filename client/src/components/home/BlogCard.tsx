@@ -18,11 +18,14 @@ export default function BlogCard({ props }) {
     return (
         <Paper sx={blogCard}        >
             <Grid container spacing={2}>
-                <Grid item>
+                {props.imageUrl && <Grid item>
+                    (
                     <ButtonBase sx={{ width: 200, height: 134 }}>
-                        <Img alt="complex" src={"https://source.unsplash.com/random"} />
+                        <Img alt="complex" src={props.imageUrl} />
+                        {props.imageUrl}
                     </ButtonBase>
-                </Grid>
+                    )
+                </Grid>}
                 <Grid item xs={12} sm container>
                     <Grid item xs container direction="column" spacing={2}>
                         <Grid item xs>
@@ -47,9 +50,9 @@ export default function BlogCard({ props }) {
                                     <span>{dateFormat(props.createdAt)}</span>
                                     <Grid item>
                                         <Chip
-                                            label={props.theme ? props.theme : 'not established'}
-                                            onClick={() => handleClick(props.theme || 'not established')}
-                                            color={props.theme ? 'primary' : 'default'}
+                                            label={props.topic ? props.topic : 'not established'}
+                                            onClick={() => handleClick(props.topic || 'not established')}
+                                            color={props.topic ? 'primary' : 'default'}
                                         />
                                     </Grid>
                                 </div>
