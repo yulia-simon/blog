@@ -4,3 +4,4 @@ export * from './post.entity';
 export * from './comment.entity';
 export * from './token.entity';
 export * from './base.entity';
+export * from './blog.image.entity';

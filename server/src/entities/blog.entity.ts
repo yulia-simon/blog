@@ -1,6 +1,6 @@
 import { Entity, Column, ManyToOne, OneToMany } from 'typeorm';
 import { BaseEntity } from './base.entity';
-import { UserEntity, CommentEntity, PostEntity } from '.';
+import { UserEntity, CommentEntity, PostEntity, BlogImageEntity } from './index';
 
 @Entity({ name: 'blogs' })
 export class BlogEntity extends BaseEntity {
@@ -27,4 +27,7 @@ export class BlogEntity extends BaseEntity {
 
   @OneToMany(() => PostEntity, (post) => post.blog, { cascade: ['remove'] })
   posts: PostEntity[];
+
+  @OneToMany(() => BlogImageEntity, (image) => image.blog, { cascade: ['remove'] })
+  images: BlogImageEntity[];
 }

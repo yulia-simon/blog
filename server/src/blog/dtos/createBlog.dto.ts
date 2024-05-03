@@ -1,4 +1,5 @@
 
+import { BlogImageEntity } from '../../entities';
 import { Sections } from '../../constants/sections';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
@@ -20,4 +21,10 @@ export class CreateBlogDto {
     @IsNotEmpty()
     @IsOptional()
     topic: Sections;
+
+    @ApiProperty()
+    @IsString()
+    @IsOptional()
+    image: BlogImageEntity;
+
 }

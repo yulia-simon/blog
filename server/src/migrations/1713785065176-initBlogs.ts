@@ -1,8 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
+
 export class InitBlogs1713785065176 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
+
             new Table({
                 name: 'blogs',
                 columns: [

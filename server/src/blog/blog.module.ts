@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { BlogEntity, UserEntity } from './../entities';
+import { BlogEntity, BlogImageEntity, UserEntity } from './../entities';
 import { BlogService } from './blog.service';
 import { BlogController } from './blog.controller';
 import { SlugProvider } from './slug.provider';
@@ -11,7 +11,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 @Module({
   imports: [
     ConfigModule,
-    TypeOrmModule.forFeature([BlogEntity, UserEntity]),
+    TypeOrmModule.forFeature([BlogEntity, UserEntity, BlogImageEntity]),
 
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({
