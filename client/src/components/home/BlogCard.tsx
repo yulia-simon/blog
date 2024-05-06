@@ -19,12 +19,9 @@ export default function BlogCard({ props }) {
         <Paper sx={blogCard}        >
             <Grid container spacing={2}>
                 {props.imageUrl && <Grid item>
-                    (
                     <ButtonBase sx={{ width: 200, height: 134 }}>
                         <Img alt="complex" src={props.imageUrl} />
-                        {props.imageUrl}
                     </ButtonBase>
-                    )
                 </Grid>}
                 <Grid item xs={12} sm container>
                     <Grid item xs container direction="column" spacing={2}>

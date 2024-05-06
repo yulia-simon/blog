@@ -94,6 +94,7 @@ export class PostService {
                             user: true,
                         },
                     },
+                    images: true,
                 },
             });
             if (!blog) {
@@ -118,6 +119,7 @@ export class PostService {
                 title: blog.title,
                 posts: postsData,
                 blog_content: blog.content,
+                images: blog.images,
                 blog_id: blog.id,
             };
         } catch (err) {

@@ -1,7 +1,7 @@
 import { Injectable, Logger, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { BlogEntity as Blog, UserEntity as User } from './../entities';
+import { BlogEntity as Blog, BlogImageEntity as BlogImage, UserEntity as User } from './../entities';
 import { Pagination, PaginationOptionsInterface } from '../utils/paginate';
 import { SlugProvider } from './slug.provider';
 import { CreateBlogDto, updateBlogDto } from './dtos';
@@ -16,6 +16,8 @@ export class BlogService {
         private readonly blogRepository: Repository<Blog>,
         @InjectRepository(User)
         private readonly userRepository: Repository<User>,
+        @InjectRepository(BlogImage)
+        private readonly imageRepository: Repository<BlogImage>,
         private readonly slugProvider: SlugProvider,
     ) { }
 
@@ -64,11 +66,12 @@ export class BlogService {
 
     async findBySlug(slug: string): Promise<Blog> {
         try {
-            return await this.blogRepository.findOne({
-                where: {
-                    slug,
-                },
-            });
+            const blog = await this.blogRepository
+                .createQueryBuilder('blog')
+                .leftJoinAndSelect('blog.images', 'images')
+                .where('blog.slug = :slug', { slug })
+                .getOne();
+            return blog;
         } catch (err) {
             this.logger.error('Error in findBySlug service', err);
             throw err;

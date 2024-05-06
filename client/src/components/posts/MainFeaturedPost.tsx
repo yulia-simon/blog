@@ -10,12 +10,21 @@ interface MainFeaturedPostProps {
         blog_content: string;
         title: string;
         linkText: string;
-    };
-}
+        images: MainFeaturedPostImage[];
+    }
+};
+interface MainFeaturedPostImage {
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    lastChangedBy: null | string;
+    internalComment: null | string;
+    url: string;
+};
+
 
 export default function MainFeaturedPost(props: MainFeaturedPostProps) {
     const { blog } = props;
-
     return (
         <Paper
             sx={{
@@ -26,7 +35,7 @@ export default function MainFeaturedPost(props: MainFeaturedPostProps) {
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
-                backgroundImage: `url(https://source.unsplash.com/random?wallpapers)`,
+                backgroundImage: `${blog.images[0]?.url ? `url(${blog.images[0].url})` : ''}`,
             }}
         >
             {<img style={{ display: 'none' }} src="https://source.unsplash.com/random?wallpapers" alt="Blog img" />}

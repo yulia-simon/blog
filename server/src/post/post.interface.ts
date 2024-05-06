@@ -1,3 +1,4 @@
+import { BlogImageEntity } from "@/entities";
 
 
 export interface PostsBySlugResponse {
@@ -5,6 +6,7 @@ export interface PostsBySlugResponse {
     posts?: PostDataInterface[];
     blog_content?: string;
     blog_id?: string;
+    images?: BlogImageEntity[];
 }
 export interface PostDataInterface {
     id: string;
